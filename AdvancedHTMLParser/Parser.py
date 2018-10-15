@@ -365,6 +365,11 @@ class AdvancedHTMLParser(HTMLParser):
         (root, isFromRoot) = self._handleRootArg(root)
 
         elements = []
+        # quick fix
+        for x in self.getAllNodes():
+            if className in x.className.split(" "):
+                elements.append(x)
+        return TagCollection(elements)
 
         if isFromRoot is True and className in root.classNames:
             elements.append(root)
